@@ -10,6 +10,8 @@ struct LearnListView: View {
                 Text("Zwei Demo-Lernstrecken aus dem Pilotmaterial — keine vollständigen A0-Lektionen.")
                     .font(AppFont.germanCaption())
                     .foregroundStyle(ColorTokens.textSecondary)
+                Text(completedPathsSummary)
+                    .font(AppFont.germanBody().weight(.semibold))
             }
             Section("Demo-Lernstrecken") {
                 ForEach(PilotLearningPathCatalog.all) { path in
@@ -44,6 +46,12 @@ struct LearnListView: View {
             }
         }
         .padding(.vertical, Spacing.xxs)
+    }
+
+    private var completedPathsSummary: String {
+        let paths = PilotLearningPathCatalog.all
+        let completed = PilotPathProgressTracker.completedPathCount(paths: paths, progress: Array(progressByPathID.values))
+        return "\(completed) von \(paths.count) Lernstrecken abgeschlossen"
     }
 
     private func loadProgress() async {

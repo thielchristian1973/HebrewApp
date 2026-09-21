@@ -1,13 +1,16 @@
 import SwiftUI
 
-/// One card per lexeme: hear it, recall the meaning, reveal, self-rate. Fully usable without a
-/// microphone or AI — recall is a self-assessment, never an invented text-matching score
-/// (Documentation/DECISIONS.md correction 3 and Documentation/LEARNING_ENGINE.md).
+/// One card per lexeme: hear it, recall the meaning, reveal, self-rate on three honest levels.
+/// Fully usable without a microphone or AI — recall is a self-assessment, never an invented
+/// text-matching score (Documentation/DECISIONS.md correction 3 and
+/// Documentation/LEARNING_ENGINE.md). "Unsicher" maps to `.unscored`, not to a forced right/wrong
+/// — DIDACTICS.md: "Ungeprüfte freie Sprache ist 'nicht bewertet', nicht falsch".
 struct VocabularyStepView: View {
     let lexemes: [PilotLexeme]
     let onFinished: () async -> Void
 
     @Environment(AppEnvironment.self) private var environment
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var index = 0
     @State private var isRevealed = false
     @State private var isSpeaking = false
@@ -32,26 +35,69 @@ struct VocabularyStepView: View {
                             Text(lexeme.german)
                                 .font(AppFont.germanBody())
                                 .foregroundStyle(ColorTokens.textSecondary)
+                                .transition(revealTransition)
                         } else {
-                            SecondaryButton(title: "Bedeutung anzeigen") { isRevealed = true }
+                            SecondaryButton(title: "Bedeutung anzeigen") {
+                                withAnimation(revealAnimation) { isRevealed = true }
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
                 }
+                .id(lexeme.id)
+                .transition(cardTransition)
 
                 if isRevealed {
-                    HStack(spacing: Spacing.sm) {
-                        SecondaryButton(title: "Wusste ich nicht") {
-                            Task { await advance(lexeme: lexeme, correct: false) }
-                        }
-                        PrimaryButton("Wusste ich") {
-                            Task { await advance(lexeme: lexeme, correct: true) }
-                        }
-                    }
+                    selfAssessmentButtons(lexeme: lexeme)
+                        .transition(revealTransition)
                 }
             }
         }
         .padding(Spacing.md)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: index)
+    }
+
+    private func selfAssessmentButtons(lexeme: PilotLexeme) -> some View {
+        HStack(spacing: Spacing.xs) {
+            assessmentButton(title: "Nicht gewusst", systemImage: "xmark.circle", tint: .orange) {
+                Task { await advance(lexeme: lexeme, correctness: .incorrect) }
+            }
+            assessmentButton(title: "Unsicher", systemImage: "questionmark.circle", tint: ColorTokens.textSecondary) {
+                Task { await advance(lexeme: lexeme, correctness: .unscored) }
+            }
+            assessmentButton(title: "Gewusst", systemImage: "checkmark.circle.fill", tint: ColorTokens.primary) {
+                Task { await advance(lexeme: lexeme, correctness: .correct) }
+            }
+        }
+    }
+
+    private func assessmentButton(title: String, systemImage: String, tint: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: Spacing.xxs) {
+                Image(systemName: systemImage)
+                    .accessibilityHidden(true)
+                Text(title).font(AppFont.germanCaption())
+            }
+            .frame(maxWidth: .infinity, minHeight: HitTarget.minimum)
+        }
+        .buttonStyle(TactileButtonStyle())
+        .tint(tint)
+        .accessibilityLabel(title)
+    }
+
+    private var cardTransition: AnyTransition {
+        reduceMotion ? .identity : .asymmetric(
+            insertion: .opacity.combined(with: .move(edge: .trailing)),
+            removal: .opacity.combined(with: .move(edge: .leading))
+        )
+    }
+
+    private var revealTransition: AnyTransition {
+        reduceMotion ? .identity : .opacity.combined(with: .scale(scale: 0.96, anchor: .top))
+    }
+
+    private var revealAnimation: Animation? {
+        reduceMotion ? nil : .easeOut(duration: 0.2)
     }
 
     private func speak(_ text: String) async {
@@ -61,19 +107,26 @@ struct VocabularyStepView: View {
         try? await environment.synthesis.speak(text: text, voiceIdentifier: voice.id, rate: .normal)
     }
 
-    private func advance(lexeme: PilotLexeme, correct: Bool) async {
+    private func advance(lexeme: PilotLexeme, correctness: PilotCorrectness) async {
+        environment.feedback.play(FeedbackCueMapper.forVocabularyAssessment(correctness))
+
         let attempt = PilotAttempt(
             timestampUTC: Date(),
             kind: .lexemeRecall,
             itemID: lexeme.id,
-            correctness: correct ? .correct : .incorrect
+            correctness: correctness
         )
         try? await environment.progressRepository.recordAttempt(attempt)
 
-        isRevealed = false
-        if index + 1 < lexemes.count {
-            index += 1
-        } else {
+        let isLastLexeme = index + 1 >= lexemes.count
+        let animation = reduceMotion ? nil : Animation.easeInOut(duration: 0.25)
+        withAnimation(animation) {
+            isRevealed = false
+            if !isLastLexeme {
+                index += 1
+            }
+        }
+        if isLastLexeme {
             await onFinished()
         }
     }

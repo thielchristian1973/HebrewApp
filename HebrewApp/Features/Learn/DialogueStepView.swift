@@ -8,6 +8,7 @@ struct DialogueStepView: View {
     let onFinished: () async -> Void
 
     @Environment(AppEnvironment.self) private var environment
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var state: DialogueSessionState?
     @State private var isLoading = true
     @State private var hint: TutorSuggestion?
@@ -55,6 +56,7 @@ struct DialogueStepView: View {
                 }
             }
             .padding(Spacing.md)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: state.history.count)
         }
     }
 
@@ -76,7 +78,7 @@ struct DialogueStepView: View {
                         HebrewText(sentence.hebrew, font: AppFont.hebrewBody())
                             .frame(maxWidth: .infinity, minHeight: HitTarget.minimum, alignment: .trailing)
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(TactileButtonStyle())
                 }
             }
         }
@@ -122,7 +124,7 @@ struct DialogueStepView: View {
     private func submit(choice: DialogueChoice, state currentState: DialogueSessionState, engine: DialogueEngine) async {
         hint = nil
         let outcome = engine.submit(choice: choice, state: currentState, dialogue: dialogue)
-        await apply(outcome: outcome, itemID: currentState.currentNodeID)
+        await apply(outcome: outcome, itemID: currentState.currentNodeID, isAutoResolved: false)
     }
 
     private func requestHint(state currentState: DialogueSessionState) async {
@@ -130,23 +132,29 @@ struct DialogueStepView: View {
         hint = try? await provider.suggestNextStep(for: currentState, dialogue: dialogue)
     }
 
-    private func apply(outcome: DialogueStepOutcome, itemID: String) async {
+    private func apply(outcome: DialogueStepOutcome, itemID: String, isAutoResolved: Bool) async {
+        environment.feedback.play(FeedbackCueMapper.forDialogueOutcome(outcome, isAutoResolved: isAutoResolved))
+
         switch outcome {
         case .advanced(let newState), .completed(let newState):
-            state = newState
+            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) {
+                state = newState
+            }
             try? await environment.progressRepository.saveDialogueSession(newState)
             try? await environment.progressRepository.recordAttempt(
                 PilotAttempt(timestampUTC: Date(), kind: .dialogueStep, itemID: itemID, correctness: .correct)
             )
         case .incorrectChoice(let newState, let revealAnswer):
-            state = newState
+            withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.25)) {
+                state = newState
+            }
             try? await environment.progressRepository.saveDialogueSession(newState)
             try? await environment.progressRepository.recordAttempt(
                 PilotAttempt(timestampUTC: Date(), kind: .dialogueStep, itemID: itemID, correctness: .incorrect)
             )
             if revealAnswer, let engine = environment.makeDialogueEngine() {
                 let revealed = engine.applySupportedContinuation(state: newState, dialogue: dialogue)
-                await apply(outcome: revealed, itemID: itemID)
+                await apply(outcome: revealed, itemID: itemID, isAutoResolved: true)
             }
         }
     }

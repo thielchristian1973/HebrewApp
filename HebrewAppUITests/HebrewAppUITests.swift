@@ -36,6 +36,28 @@ final class HebrewAppUITests: XCTestCase {
     }
 
     @MainActor
+    func testVocabularySelfAssessmentAdvancesToNextStep() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let startButton = app.buttons["Vorstellen starten"]
+        XCTAssertTrue(startButton.waitForExistence(timeout: 10))
+        startButton.tap()
+
+        let revealButton = app.buttons["Bedeutung anzeigen"]
+        XCTAssertTrue(revealButton.waitForExistence(timeout: 10))
+        revealButton.tap()
+
+        XCTAssertTrue(app.buttons["Nicht gewusst"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Unsicher"].exists)
+        let confident = app.buttons["Gewusst"]
+        XCTAssertTrue(confident.exists)
+        confident.tap()
+
+        // Second lexeme's reveal button appears once the card has advanced.
+        XCTAssertTrue(app.buttons["Bedeutung anzeigen"].waitForExistence(timeout: 5))
+    }
+
+    @MainActor
     func testPilotDiagnosticsLinkOpensDeveloperScreen() throws {
         let app = XCUIApplication()
         app.launch()

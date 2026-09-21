@@ -15,6 +15,7 @@ struct TodayView: View {
     @Environment(AppEnvironment.self) private var environment
     @AppStorage("developerModeEnabled") private var developerModeEnabled = Self.developerModeDefault
     @State private var nextPath: PilotLearningPath?
+    @State private var pathProgress: [PilotLearningPathProgress] = []
     @State private var isLoading = true
 
     var body: some View {
@@ -63,6 +64,9 @@ struct TodayView: View {
                     Text(nextPath.objective)
                         .font(AppFont.germanBody())
                         .foregroundStyle(ColorTokens.textSecondary)
+                    Text(completedPathsSummary)
+                        .font(AppFont.germanCaption())
+                        .foregroundStyle(ColorTokens.textSecondary)
                     NavigationLink(value: TodayDestination.path(nextPath.id)) {
                         HStack(spacing: Spacing.xs) {
                             Image(systemName: "play.fill")
@@ -105,16 +109,25 @@ struct TodayView: View {
         }
     }
 
+    private var completedPathsSummary: String {
+        let paths = PilotLearningPathCatalog.all
+        let completed = PilotPathProgressTracker.completedPathCount(paths: paths, progress: pathProgress)
+        return "\(completed) von \(paths.count) Lernstrecken abgeschlossen"
+    }
+
     private func updateNextPath() async {
+        var loaded: [PilotLearningPathProgress] = []
+        var firstIncomplete: PilotLearningPath?
         for path in PilotLearningPathCatalog.all {
             let progress = (try? await environment.progressRepository.loadPathProgress(pathID: path.id))
                 ?? PilotLearningPathProgress(pathID: path.id)
-            if !PilotPathProgressTracker.isComplete(path: path, progress: progress) {
-                nextPath = path
-                return
+            loaded.append(progress)
+            if firstIncomplete == nil, !PilotPathProgressTracker.isComplete(path: path, progress: progress) {
+                firstIncomplete = path
             }
         }
-        nextPath = nil
+        pathProgress = loaded
+        nextPath = firstIncomplete
     }
 
     private func describeContentError(_ error: ContentLoadError) -> String {

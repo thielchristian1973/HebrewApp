@@ -16,6 +16,7 @@ final class AppEnvironment {
     let transcription: any LocalTranscribing
     let capabilityService: CapabilityService
     let guidedDialogueProvider: any TutorProvider
+    let feedback: FeedbackService
     private let sessionCoordinator: AudioSessionCoordinator
 
     private(set) var contentBundle: PilotContentBundle?
@@ -35,6 +36,7 @@ final class AppEnvironment {
         self.transcription = transcription
         self.capabilityService = CapabilityService(synthesis: synthesis, transcription: transcription)
         self.guidedDialogueProvider = GuidedDialogueProvider()
+        self.feedback = FeedbackService()
         self.sessionCoordinator = sessionCoordinator
     }
 

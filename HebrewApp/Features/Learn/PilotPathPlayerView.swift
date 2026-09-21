@@ -27,11 +27,14 @@ struct PilotPathPlayerView: View {
     @ViewBuilder
     private func content(progress: PilotLearningPathProgress, bundle: PilotContentBundle) -> some View {
         if let step = PilotPathProgressTracker.nextIncompleteStep(path: path, progress: progress) {
-            VStack(alignment: .leading, spacing: Spacing.md) {
-                Text("Schritt \(path.steps.firstIndex(where: { $0.id == step.id }).map { $0 + 1 } ?? 1) von \(path.steps.count)")
-                    .font(AppFont.germanCaption())
-                    .foregroundStyle(ColorTokens.textSecondary)
-                    .padding(.horizontal, Spacing.md)
+            VStack(alignment: .leading, spacing: Spacing.sm) {
+                HStack(spacing: Spacing.sm) {
+                    StepDotIndicator(states: PilotPathProgressTracker.stepDotStates(path: path, progress: progress))
+                    Text("Schritt \(path.steps.firstIndex(where: { $0.id == step.id }).map { $0 + 1 } ?? 1) von \(path.steps.count)")
+                        .font(AppFont.germanCaption())
+                        .foregroundStyle(ColorTokens.textSecondary)
+                }
+                .padding(.horizontal, Spacing.md)
 
                 stepView(step, bundle: bundle)
             }

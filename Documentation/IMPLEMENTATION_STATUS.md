@@ -134,6 +134,18 @@ Diese Punkte sind laut PILOT.md/TESTING.md Abnahmebedingungen und werden hier au
 - 100+ Held-out-Prompts für den Tutor-Benchmark (LOCAL_AI.md „Pilot-Ziele") — dieser Pilot-Build stellt die technische Infrastruktur dafür bereit (capability-gesicherter Provider mit Validierung gegen erlaubte IDs), führt den eigentlichen Sprachqualitäts-Benchmark aber nicht automatisch aus.
 - Große Dynamic-Type-Textgrößen und Reduce-Motion wurden nicht systematisch durchgetestet (nur Standardgröße visuell geprüft).
 
+## Nachtrag: UI-Politur innerhalb von P1 (21.09.2026)
+
+Auf Nutzerwunsch zusätzlich umgesetzt, ohne den P1-Funktionsumfang zu erweitern (kein neuer Kursinhalt, keine P2-Features):
+- Haptik + sehr dezenter, selbst synthetisierter Ton (kein Kauf/keine Fremdaufnahme, zwei kurze generierte WAV-Dateien) bei Selbstbewertung/Dialogfortschritt, über `FeedbackService` + reine, unit-getestete Entscheidungslogik `FeedbackCueMapper`.
+- Selbstbewertung bei Vokabeln auf drei Stufen erweitert („Nicht gewusst" / „Unsicher" / „Gewusst") — „Unsicher" bildet ohne Domain-Änderung auf `PilotCorrectness.unscored` ab.
+- Schritt-Fortschrittspunkte (`StepDotIndicator`) in der Lernstrecke sowie aggregierte Fortschrittszeile („X von 2 Lernstrecken abgeschlossen") auf „Heute" und „Lernen", beides über neue, unit-getestete `PilotPathProgressTracker`-Funktionen (`completedPathCount`, `stepDotStates`).
+- Sanfte Kreuzblende zwischen Vokabel-/Satzkarten, animiertes Einblenden von Bedeutung/Übersetzung, dezente Press-Animation auf Antwort-Buttons (`TactileButtonStyle`) — alle Animationen respektieren `accessibilityReduceMotion` und werden dann übersprungen.
+
+**Testnachweis**: TDD befolgt für die neue Entscheidungslogik (Test zuerst geschrieben, RED durch fehlenden Typ bestätigt, dann implementiert). Automatisierter Stand nach der Politur: 27 Unit-Tests (12 neue: 6 `FeedbackCueMapper`, 6 `PilotPathProgressTracker`-Erweiterungen) und 5 XCUITests (1 neu: Selbstbewertung navigiert zur nächsten Karte), alle grün via `xcodebuild ... test`.
+
+**Ehrlich offen**: Die 3-stufigen Selbstbewertungs-Buttons und die Kreuzblenden-Übergänge wurden funktional per XCUITest (Accessibility-Abfrage) verifiziert, aber in dieser Sitzung nicht zusätzlich per manuellem Simulator-Screenshot visuell abgenommen — wiederholte Koordinaten-Taps auf das schmale „Bedeutung anzeigen"-Textelement trafen im Pane-Werkzeug nicht zuverlässig (Listenzeilen und Tab-Leiste funktionierten hingegen reproduzierbar). Der Reduce-Motion-Codepfad ist eine einfache Ternary-Verzweigung und wurde per Code-Review, nicht per Live-Toggle auf dem Gerät geprüft. Eine echte visuelle/manuelle Abnahme bleibt Teil der ohnehin offenen physischen Gerätetests.
+
 ## Nächste Phase
 
 P1-Abnahmepunkt ist hiermit erreicht und dokumentiert; es wird **kein** Go/No-Go für den Kern oder den lokalen Tutor behauptet — das ist laut PILOT.md „Entscheidung nach Pilot" an die oben offenen physischen/redaktionellen Prüfungen gebunden. Empfohlener nächster Schritt gemäß IMPLEMENTATION_PLAN.md: P2 „Lernkern" (Produktionsschema/-validator, SwiftData-Migrationen für echte Kursdaten, LessonEngine, gepinnter FSRS-Adapter, echte Übungstypen E01–E12) — erst nach dieser P1-Dokumentation und nach Rücksprache, welche der oben offenen physischen Prüfungen zuerst nachgeholt werden.
