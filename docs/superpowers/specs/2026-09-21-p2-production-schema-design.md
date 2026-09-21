@@ -373,12 +373,29 @@ This is a source-breaking change to its memberwise `init` (new field). Since
 `confidence: Double? = nil` as the last parameter — every existing call site keeps
 compiling unchanged.
 
-`TutorResult`: before writing this type, check `HebrewApp/Domain/TutorProtocols.swift`
-for an existing type covering `AppleFoundationModelProvider`'s return shape — several
-of DATA_MODEL.md's named fields (`nextTurnID`, `provider`, `capabilityStatus`) sound
-like they may already exist there under a different name. If so, extend that type
-rather than introducing a parallel one. (Flagged here rather than resolved, since
-verifying requires reading a file outside this session's research pass.)
+`TutorResult` — **resolved**: `HebrewApp/Domain/TutorProtocols.swift` already has
+`TutorSuggestion` (`suggestedSentenceID`, `provider: TutorProviderKind`,
+`elapsedTime`), explicitly documented in its own doc comment as "matches the shape
+of DATA_MODEL.md's `TutorResult`, reduced to the pilot's needs" — the same
+pilot-reduced-type pattern as `PilotAttempt`/`Attempt`. `TutorSuggestion` stays
+unchanged (still used by `TutorProvider`/`DialogueEngine`); the new production type
+adds the two missing fields and reuses two already-existing enums rather than
+inventing new ones:
+
+```swift
+// HebrewApp/Domain/TutorResult.swift
+struct TutorResult: Sendable, Hashable {
+    var nextTurnID: String?
+    var feedbackID: String?
+    var provider: TutorProviderKind        // reused from TutorProtocols.swift
+    var elapsedTime: TimeInterval
+    var capabilityStatus: LocalTutorCapability  // reused from CapabilityStatus.swift
+}
+```
+
+Not `Codable`: nothing in this sub-project persists a `TutorResult` (no
+`TutorResultRecord` in §5) — it's an in-memory result value, like
+`TutorSuggestion` today.
 
 ## 5. SwiftData persistence + migration
 
@@ -596,9 +613,19 @@ New test files under `HebrewAppTests/`, following the existing `@Suite`/`@Test`
   runtime engine — this spec only defines the graph *data* it will walk),
   `AnswerEvaluator`, `HelpPolicy`/mastery-level *logic* (this spec only defines the
   `SkillState` it will read/write).
-- A `Clock` abstraction for injected time — `Attempt.localLearningDay` is persisted
-  as a plain string here; deriving it correctly (DST, timezone change, clock
-  rollback) is FSRS sub-project work.
+- **Correction from an earlier draft of this spec**: a time-injection abstraction
+  already exists (`HebrewApp/Domain/Clock.swift`: `DateProviding` protocol +
+  `SystemDateProvider`, named `DateProviding` rather than `Clock` to avoid
+  colliding with `_Concurrency.Clock`) — this spec was wrong to describe it as not
+  yet built. Nothing in this codebase creates a real `Attempt` yet (that's
+  LessonEngine's job, a later sub-project), so `DateProviding` isn't wired into an
+  attempt-recording call site here either. What *is* in scope: a small, pure
+  `localLearningDay(for:in:)`-style Domain function deriving the calendar-day
+  string from a `Date` + `TimeZone`, unit-tested including DST-transition and
+  timezone-change cases (LEARNING_ENGINE.md requires exactly this), since it's
+  cheap, self-contained, and directly de-risks the one open correctness question
+  `Attempt.localLearningDay`/`timezoneIdentifier` raises. See the plan for the
+  concrete task.
 - Wiring `.github/workflows/ci.yml` to run `validate_production.py` — one line to
   add once the script exists, deliberately deferred so this spec's own CI run
   (build + existing test suite) stays the acceptance bar for this sub-project.
