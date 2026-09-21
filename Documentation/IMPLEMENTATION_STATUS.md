@@ -146,6 +146,16 @@ Auf Nutzerwunsch zusätzlich umgesetzt, ohne den P1-Funktionsumfang zu erweitern
 
 **Ehrlich offen**: Die 3-stufigen Selbstbewertungs-Buttons und die Kreuzblenden-Übergänge wurden funktional per XCUITest (Accessibility-Abfrage) verifiziert, aber in dieser Sitzung nicht zusätzlich per manuellem Simulator-Screenshot visuell abgenommen — wiederholte Koordinaten-Taps auf das schmale „Bedeutung anzeigen"-Textelement trafen im Pane-Werkzeug nicht zuverlässig (Listenzeilen und Tab-Leiste funktionierten hingegen reproduzierbar). Der Reduce-Motion-Codepfad ist eine einfache Ternary-Verzweigung und wurde per Code-Review, nicht per Live-Toggle auf dem Gerät geprüft. Eine echte visuelle/manuelle Abnahme bleibt Teil der ohnehin offenen physischen Gerätetests.
 
+## Nachtrag: Visuelles Rebranding — Blau-Palette + Wiedehopf-Maskottchen (21.09.2026)
+
+Auf expliziten Nutzerwunsch (siehe DECISIONS.md „Rebranding-Entscheidung"), ohne P1-Funktionsumfang zu erweitern:
+- Farbtoken (`ColorTokens.swift` + alle sechs `Assets.xcassets`-Colorsets plus `AccentColor`) von der ursprünglichen Cremeton-/Petrol-Palette auf eine kräftige Blau-Palette umgestellt; Light- und Dark-Werte am Gerätesimulator (iPhone 17 Pro, iOS 26.5) per Screenshot geprüft.
+- Neues Maskottchen (Wiedehopf/דוכיפת) mit vier Ausdrücken (winkend, fliegend, fröhlich, gratulierend), vollständig als natives SwiftUI `Canvas`/`GraphicsContext`-Zeichnen implementiert (`HebrewApp/DesignSystem/HoopoeMascot.swift`) — keine Bilddateien, kein SVG-Renderer, keine Fremdlizenz. Geometrie ist ein direkter Port der mit dem Nutzer über mehrere Runden abgestimmten Vektor-Vorlage.
+- Integriert auf „Heute" (winkend, solange eine Lernstrecke offen ist; fröhlich, sobald beide Demo-Lernstrecken abgeschlossen sind) und auf dem Lernstrecken-Abschluss-Screen (gratulierend, ersetzt das vorherige System-Checkmark-Icon). Die fliegende Pose ist im Designsystem fertig, aber bewusst noch nirgends platziert — es existiert aktuell kein Hero-/Splash-Screen, der ohne zusätzlichen, nicht angefragten Scope dafür in Frage käme.
+- Verifiziert: `xcodebuild build` und `xcodebuild test` sauber (weiterhin 27 Unit- + 5 UI-Tests grün), beide Demo-Lernstrecken einmal vollständig durchgespielt und alle drei integrierten Maskottchen-Ausdrücke live im Simulator per Screenshot bestätigt.
+
+**Ehrlich offen**: Der WCAG-AA-Kontrastcheck der neuen Blau-Palette ist weiterhin nicht durchgeführt (war bereits vor dem Rebranding offen, siehe oben) — die neuen Werte ändern daran nichts. Große Dynamic-Type-Größen und Reduce Motion wurden für die neuen Screens nicht erneut systematisch nachgetestet.
+
 ## Nächste Phase
 
 P1-Abnahmepunkt ist hiermit erreicht und dokumentiert; es wird **kein** Go/No-Go für den Kern oder den lokalen Tutor behauptet — das ist laut PILOT.md „Entscheidung nach Pilot" an die oben offenen physischen/redaktionellen Prüfungen gebunden. Empfohlener nächster Schritt gemäß IMPLEMENTATION_PLAN.md: P2 „Lernkern" (Produktionsschema/-validator, SwiftData-Migrationen für echte Kursdaten, LessonEngine, gepinnter FSRS-Adapter, echte Übungstypen E01–E12) — erst nach dieser P1-Dokumentation und nach Rücksprache, welche der oben offenen physischen Prüfungen zuerst nachgeholt werden.

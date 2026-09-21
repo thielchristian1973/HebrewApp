@@ -68,9 +68,8 @@ struct PilotPathPlayerView: View {
 
     private var completionView: some View {
         VStack(spacing: Spacing.md) {
-            Image(systemName: "checkmark.seal.fill")
-                .font(.largeTitle)
-                .foregroundStyle(ColorTokens.primary)
+            HoopoeMascotView(expression: .celebrating)
+                .frame(width: 120, height: 120)
             Text("\(path.title) abgeschlossen")
                 .font(AppFont.sectionHeader())
             Text("Das ist eine Demo-Lernstrecke aus Pilotmaterial, keine vollständige A0-Lektion.")

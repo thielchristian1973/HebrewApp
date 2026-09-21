@@ -1,27 +1,32 @@
 import SwiftUI
 
-/// Starting color tokens from Documentation/DESIGN_SYSTEM.md. These are implementation
-/// defaults, not a validated brand system — contrast still needs a real WCAG AA pass before
-/// release (DESIGN_SYSTEM.md: "Kontrast vor Release prüfen").
+/// Color tokens from Documentation/DESIGN_SYSTEM.md. Rebranded to a bold-blue palette plus the
+/// Wiedehopf (hoopoe) mascot on 21.09.2026 — a deliberate, explicit product decision that
+/// supersedes the original "ruhig, warm, erwachsen" cream/petrol palette and the earlier
+/// no-mascot rule (Documentation/DECISIONS.md, "Rebranding-Entscheidung"). These are still
+/// implementation defaults, not a validated brand system — contrast still needs a real WCAG AA
+/// pass before release (DESIGN_SYSTEM.md: "Kontrast vor Release prüfen").
 enum ColorTokens {
     // Light
-    static let lightBackground = Color(hex: 0xF7F4EE)
+    static let lightBackground = Color(hex: 0xF3F6FD)
     static let lightSurface = Color(hex: 0xFFFFFF)
-    static let lightPrimary = Color(hex: 0x153F40)
-    static let lightText = Color(hex: 0x192D2E)
-    static let lightSecondaryText = Color(hex: 0x526362)
-    static let lightDivider = Color(hex: 0xD7DED9)
+    static let lightPrimary = Color(hex: 0x2952E3)
+    static let lightText = Color(hex: 0x16213E)
+    static let lightSecondaryText = Color(hex: 0x5B6B8C)
+    static let lightDivider = Color(hex: 0xDCE3F5)
 
     // Dark
-    static let darkBackground = Color(hex: 0x101D1E)
-    static let darkSurface = Color(hex: 0x1A2B2C)
-    static let darkPrimary = Color(hex: 0xA7D1C5)
-    static let darkText = Color(hex: 0xF3F3EA)
-    static let darkSecondaryText = Color(hex: 0xBBCBC7)
+    static let darkBackground = Color(hex: 0x0E1730)
+    static let darkSurface = Color(hex: 0x16213E)
+    static let darkPrimary = Color(hex: 0x7C97FF)
+    static let darkText = Color(hex: 0xEDF1FF)
+    static let darkSecondaryText = Color(hex: 0xA9B6D9)
+    static let darkDivider = Color(hex: 0x2A3A5C)
 
     /// Sparse decorative accent only — never used to carry meaning by itself
-    /// (DESIGN_SYSTEM.md: "Fehlerzustände mit Text/Icon statt allein Farbe").
-    static let accent = Color(hex: 0xA96542)
+    /// (DESIGN_SYSTEM.md: "Fehlerzustände mit Text/Icon statt allein Farbe"). Matches the
+    /// mascot's crest tone so the illustration and UI accent read as one system.
+    static let accent = Color(hex: 0xC97A3B)
 
     static let background = Color("AppBackground", bundle: .main)
     static let surface = Color("AppSurface", bundle: .main)

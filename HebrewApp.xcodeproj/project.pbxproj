@@ -14,6 +14,7 @@
 		1CAA1E959B455431634B52CA /* Pilot in Resources */ = {isa = PBXBuildFile; fileRef = E375A2DA963FDC3C8F3EA95C /* Pilot */; };
 		1DB6065B67EA3D9541B5BD78 /* PilotPathPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187CD9E34AAE4515EA29C4CB /* PilotPathPlayerView.swift */; };
 		2273788F3E2FA6004B88DFE6 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34C22B65DEA19789B726883 /* TodayView.swift */; };
+		24FBD0A4F2DBDB5412E7E1A3 /* HoopoeMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE334884FE5D5C9D6583FFA6 /* HoopoeMascot.swift */; };
 		28EECF5DE88E22F67451EB3B /* RepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8426C2F4204E0DF1FBAF14 /* RepositoryProtocols.swift */; };
 		29AADDC7F9CA3AA0037D2CE0 /* LoadingAndErrorViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D86A16F2F8122C5FE507EDF /* LoadingAndErrorViews.swift */; };
 		2B22889B74BCD58D6C26854D /* DomainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D2BC045775828F23ECA99 /* DomainErrors.swift */; };
@@ -139,6 +140,7 @@
 		AC14085104A8F8C3978F8DBA /* DialogueEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueEngine.swift; sourceTree = "<group>"; };
 		B830366BDDF97F57CDBF60FB /* LearnListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnListView.swift; sourceTree = "<group>"; };
 		BEB32522EDC3D27205F8CA4F /* FeedbackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackService.swift; sourceTree = "<group>"; };
+		CE334884FE5D5C9D6583FFA6 /* HoopoeMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoopoeMascot.swift; sourceTree = "<group>"; };
 		D0A0A7F2888A95176A780E03 /* SentenceStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceStepView.swift; sourceTree = "<group>"; };
 		D6FCA202874FF42ACC377F84 /* HebrewAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HebrewAppUITests.swift; sourceTree = "<group>"; };
 		DA49C5BB036FD612517613F7 /* HebrewText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HebrewText.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				35773CB75A4C21231130F8F9 /* ColorTokens.swift */,
 				DA49C5BB036FD612517613F7 /* HebrewText.swift */,
+				CE334884FE5D5C9D6583FFA6 /* HoopoeMascot.swift */,
 				A658C31F32BD2B112BCE5DBB /* Spacing.swift */,
 				F6A81D853BE9A11612CBEB19 /* Typography.swift */,
 			);
@@ -565,6 +568,7 @@
 				557D31EA1F2B792EC2C6DFEB /* GuidedDialogueProvider.swift in Sources */,
 				76154643A122E20B17CC8A6D /* HebrewAppApp.swift in Sources */,
 				4BAB344DE173DABA1A984A69 /* HebrewText.swift in Sources */,
+				24FBD0A4F2DBDB5412E7E1A3 /* HoopoeMascot.swift in Sources */,
 				7A104F349628D0260D17F449 /* LearnListView.swift in Sources */,
 				67E143EDEF06E28C6FE3FEDF /* LearnerProgressView.swift in Sources */,
 				29AADDC7F9CA3AA0037D2CE0 /* LoadingAndErrorViews.swift in Sources */,

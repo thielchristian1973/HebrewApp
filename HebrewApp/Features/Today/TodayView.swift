@@ -59,7 +59,12 @@ struct TodayView: View {
     private var heroCard: some View {
         CardView {
             VStack(alignment: .leading, spacing: Spacing.sm) {
-                SectionHeader(title: "Weiterlernen")
+                HStack(alignment: .top, spacing: Spacing.sm) {
+                    SectionHeader(title: "Weiterlernen")
+                    Spacer(minLength: Spacing.sm)
+                    HoopoeMascotView(expression: nextPath == nil ? .happy : .waving)
+                        .frame(width: 56, height: 56)
+                }
                 if let nextPath {
                     Text(nextPath.objective)
                         .font(AppFont.germanBody())

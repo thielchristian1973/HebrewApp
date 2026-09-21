@@ -1,10 +1,12 @@
 # Designsystem
-Ruhig, warm, erwachsen, hochwertige Typografie; sehr sparsame Akzente. Keine Comicmaskottchen, Goldflächen, Streak-Drohungen, Konfetti oder Leaderboards.
+Ruhig, warm, erwachsen, hochwertige Typografie; sehr sparsame Akzente. Keine Goldflächen, Streak-Drohungen, Konfetti oder Leaderboards.
+
+**Rebranding 21.09.2026** (Documentation/DECISIONS.md, "Rebranding-Entscheidung"): explizite, nutzergeführte Abkehr von der ursprünglichen Cremeton-/Petrol-Palette hin zu einer kräftigen Blau-Palette, und Aufhebung des ursprünglichen Komplettverbots von Maskottchen zugunsten eines einzigen, selbst entworfenen Maskottchens (Wiedehopf/דוכיפת, `HebrewApp/DesignSystem/HoopoeMascot.swift`) — kein Löwe, keine Kopie einer fremden Marke. Weiterhin keine zusätzlichen Comicfiguren, keine Gamification-Elemente (Konfetti, Leaderboards, Streak-Drohungen) über das eine Maskottchen hinaus.
 
 ## Starttokens (Designvorgaben, Kontrast vor Release prüfen)
-Light: background #F7F4EE, surface #FFFFFF, primary #153F40, text #192D2E, secondaryText #526362, divider #D7DED9.
-Dark: background #101D1E, surface #1A2B2C, primary #A7D1C5, text #F3F3EA, secondaryText #BBCBC7.
-Akzent #A96542 nur für dezente dekorative Zwecke; Fehlerzustände mit Text/Icon statt allein Farbe.
+Light: background #F3F6FD, surface #FFFFFF, primary #2952E3, text #16213E, secondaryText #5B6B8C, divider #DCE3F5.
+Dark: background #0E1730, surface #16213E, primary #7C97FF, text #EDF1FF, secondaryText #A9B6D9, divider #2A3A5C.
+Akzent #C97A3B nur für dezente dekorative Zwecke, passend zum Federkamm des Maskottchens; Fehlerzustände mit Text/Icon statt allein Farbe.
 Spacing 4/8/12/16/24/32; Cards Radius 16; Buttons mindestens 44 pt bedienbare Fläche. Native semantische Textstile/Dynamic Type, keine fixen kleinen Labels.
 
 ## HebrewText
