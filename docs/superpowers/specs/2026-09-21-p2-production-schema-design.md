@@ -98,17 +98,26 @@ struct FrequencyRank: Codable, Sendable, Hashable {
 }
 
 /// Whether an item's audio comes from on-device synthesis or a specific pre-rendered,
-/// reviewed asset. `bundledAsset` exists for the small set of items where a specific
+/// reviewed asset. `.bundledAsset` exists for the small set of items where a specific
 /// rendering has been checked against the target voices (CONTENT_GUIDE.md's "Audio
-/// auf Zielstimmen geprüft" pipeline stage) — most items stay `systemTTS`, matching
+/// auf Zielstimmen geprüft" pipeline stage) — most items stay `.systemTTS`, matching
 /// this project's no-paid-audio-production constraint (CLAUDE.md).
-enum AudioSource: Codable, Sendable, Hashable {
+enum AudioSourceKind: String, Codable, Sendable, Hashable {
     case systemTTS
-    case bundledAsset(relativePath: String)
+    case bundledAsset
 }
 
+/// Flat `kind` + optional payload rather than a Swift associated-value enum: verified
+/// Swift's synthesized `Codable` for `case bundledAsset(relativePath: String)` produces
+/// `{"bundledAsset":{"relativePath":"..."}}` (nested, nonobvious to hand-author); this
+/// shape — `{"sourceKind":"bundledAsset","bundledAssetRelativePath":"..."}` — is flat
+/// and matches how a human or content-authoring tool would naturally write it.
+/// `bundledAssetRelativePath` is expected non-nil exactly when `sourceKind ==
+/// .bundledAsset` — a content-authoring convention, not validator-enforced in this
+/// sub-project (kept out of scope deliberately; revisit if it causes real bugs).
 struct AudioSpec: Codable, Sendable, Hashable {
-    var source: AudioSource
+    var sourceKind: AudioSourceKind
+    var bundledAssetRelativePath: String?
     var targetVoiceIdentifiers: [String]
     var isVerifiedAgainstTargetVoices: Bool
 }
