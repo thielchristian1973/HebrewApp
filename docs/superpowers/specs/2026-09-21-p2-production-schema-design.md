@@ -510,17 +510,25 @@ says it was scaffolded for, keeps the two demo pilot paths working unmodified
 (`PILOT.md` requirement), and avoids doubling the persistence plumbing for no
 stated requirement that calls for physical separation.
 
-`RepositoryProtocols.swift` additions (new methods, existing ones unchanged):
+**Correction from an earlier draft of this spec**: rather than adding methods to the
+existing `ContentRepository`/`ProgressRepository` protocols, this uses two new,
+separate protocols. Reasoning: `ContentRepository` has an existing conformer
+(`PilotContentLoader`) that has nothing to do with production content — adding a
+required method to the protocol would force it (and any future test mock) to
+implement production-loading too, for no reason. `ProgressRepository` currently has
+only one conformer (`SwiftDataProgressRepository`, which this spec extends anyway),
+so it happens to carry no immediate risk, but the same "additive, never touch pilot
+surface" principle applies for consistency and future-proofing — a class can
+conform to multiple protocols, so `SwiftDataProgressRepository` simply gains a
+second conformance. `RepositoryProtocols.swift` additions (existing protocols and
+`PilotContentLoader` are completely unchanged):
 
 ```swift
-protocol ContentRepository: Sendable {
-    func loadPilotBundle() async throws(ContentLoadError) -> PilotContentBundle
+protocol ProductionContentRepository: Sendable {
     func loadProductionBundle() async throws(ContentLoadError) -> ProductionContentBundle
 }
 
-protocol ProgressRepository: Sendable {
-    // ...existing pilot methods, unchanged...
-
+protocol ProductionProgressRepository: Sendable {
     func recordAttempt(_ attempt: Attempt) async throws(PersistenceError)
     func attempts(matching cardKey: CardKey) async throws(PersistenceError) -> [Attempt]
 
@@ -532,12 +540,15 @@ protocol ProgressRepository: Sendable {
 }
 ```
 
-`SwiftDataProgressRepository` implements these new methods following the exact
+`ProductionContentLoader` (new type, §6) conforms to `ProductionContentRepository`.
+`SwiftDataProgressRepository` gains `ProductionProgressRepository` as a second
+conformance (`final class SwiftDataProgressRepository: ProgressRepository,
+ProductionProgressRepository`), implementing the new methods following the exact
 existing pattern (build a `Record`, `context.insert`/mutate, `try save()`; fetch via
 `FetchDescriptor` + `#Predicate`, `PersistenceError.fetchFailed`/`.saveFailed` on
-failure). `resetAllProgress()` is extended to also delete the three new record types
-— it must keep deleting *only* progress, never content, which is already the
-existing contract.
+failure). `resetAllProgress()` (existing `ProgressRepository` method, unchanged
+signature) is extended to also delete the three new record types — it must keep
+deleting *only* progress, never content, which is already the existing contract.
 
 ## 6. Production content validator
 
