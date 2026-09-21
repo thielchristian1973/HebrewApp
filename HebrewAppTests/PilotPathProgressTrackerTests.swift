@@ -87,6 +87,31 @@ struct PilotPathProgressTrackerTests {
         #expect(states == [.completed, .completed, .completed])
     }
 
+    @Test("next incomplete path is the first path not yet completed")
+    func nextIncompletePathFirst() {
+        let paths = PilotLearningPathCatalog.all
+        #expect(PilotPathProgressTracker.nextIncompletePath(paths: paths, progress: [])?.id == paths[0].id)
+    }
+
+    @Test("next incomplete path skips paths already completed")
+    func nextIncompletePathSkipsCompleted() {
+        let paths = PilotLearningPathCatalog.all
+        var vorstellenProgress = PilotLearningPathProgress(pathID: paths[0].id)
+        vorstellenProgress.completedStepIDs = paths[0].steps.map(\.id)
+        #expect(PilotPathProgressTracker.nextIncompletePath(paths: paths, progress: [vorstellenProgress])?.id == paths[1].id)
+    }
+
+    @Test("next incomplete path is nil once every path is completed")
+    func nextIncompletePathAllDone() {
+        let paths = PilotLearningPathCatalog.all
+        let progress = paths.map { path -> PilotLearningPathProgress in
+            var progress = PilotLearningPathProgress(pathID: path.id)
+            progress.completedStepIDs = path.steps.map(\.id)
+            return progress
+        }
+        #expect(PilotPathProgressTracker.nextIncompletePath(paths: paths, progress: progress) == nil)
+    }
+
     @Test("catalog paths only reference existing pilot fixture IDs")
     func catalogReferencesRealFixtures() async throws {
         let bundle = try await PilotContentLoader(bundle: .main).loadPilotBundle()

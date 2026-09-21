@@ -32,6 +32,7 @@
 		620E31F7298B89ED5136F7BC /* VoiceOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95354A55E4DF81C457F18D4 /* VoiceOption.swift */; };
 		67CD00A71E55B0326DD1BC93 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4632B3F8ACBD5081DCEE99D /* SettingsView.swift */; };
 		67E143EDEF06E28C6FE3FEDF /* LearnerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB9B5A2FFCDD9C01E8F60FA /* LearnerProgressView.swift */; };
+		691BCD740D6EB8FF9D14BFA0 /* PathProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA445FE214386532901568 /* PathProgressBar.swift */; };
 		70AE4CF2677335E46B677C12 /* DialogueEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC14085104A8F8C3978F8DBA /* DialogueEngine.swift */; };
 		7450BB63B66AA017929E49BE /* GrammarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FA6DA03971055ACBD44630 /* GrammarView.swift */; };
 		76154643A122E20B17CC8A6D /* HebrewAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9AD163C1CCACD0057992B8 /* HebrewAppApp.swift */; };
@@ -99,6 +100,7 @@
 		175A3EF9F94792389D0C8AE8 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		187CD9E34AAE4515EA29C4CB /* PilotPathPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PilotPathPlayerView.swift; sourceTree = "<group>"; };
 		20CB48A174DB4BEBDA68259E /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		20DA445FE214386532901568 /* PathProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProgressBar.swift; sourceTree = "<group>"; };
 		235C3058882ACA241101D2FE /* HebrewAppTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HebrewAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29891EB01209581E5E70170D /* HebrewApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HebrewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D52212284FA346B7AA369CC /* DialogueStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueStepView.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				F9A202B8D0EA26F88A32F1A1 /* CardView.swift */,
 				BEB32522EDC3D27205F8CA4F /* FeedbackService.swift */,
 				3D86A16F2F8122C5FE507EDF /* LoadingAndErrorViews.swift */,
+				20DA445FE214386532901568 /* PathProgressBar.swift */,
 				E565DFFBC99AEB08CB95BF43 /* PrimaryButton.swift */,
 				5261FC7BD0F4EB6B4F0BFF99 /* StatusBadge.swift */,
 				016EE5171E1CD7E15D4FD75F /* StepDotIndicator.swift */,
@@ -574,6 +577,7 @@
 				29AADDC7F9CA3AA0037D2CE0 /* LoadingAndErrorViews.swift in Sources */,
 				7F9E6269DBA483020BF2B100 /* LocalTranscriptionService.swift in Sources */,
 				9A26DDC5CF99CDF68B7775B3 /* ModelContainerFactory.swift in Sources */,
+				691BCD740D6EB8FF9D14BFA0 /* PathProgressBar.swift in Sources */,
 				C017E8E97816B9B6AD98ED69 /* PilotAttempt.swift in Sources */,
 				986881CBD8CCDF7248404950 /* PilotContent.swift in Sources */,
 				5207D13132A9A38882217F29 /* PilotContentLoader.swift in Sources */,

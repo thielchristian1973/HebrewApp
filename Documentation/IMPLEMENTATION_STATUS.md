@@ -156,6 +156,16 @@ Auf expliziten Nutzerwunsch (siehe DECISIONS.md „Rebranding-Entscheidung"), oh
 
 **Ehrlich offen**: Der WCAG-AA-Kontrastcheck der neuen Blau-Palette ist weiterhin nicht durchgeführt (war bereits vor dem Rebranding offen, siehe oben) — die neuen Werte ändern daran nichts. Große Dynamic-Type-Größen und Reduce Motion wurden für die neuen Screens nicht erneut systematisch nachgetestet.
 
+## Nachtrag: "Kapitelkarten"-Layout und Karten-Politur (21.09.2026)
+
+Auf expliziten Nutzerwunsch ("nutze andere Sprachen-Apps als Vorlage und generiere ein modernes UI"), nach Recherche der tatsächlichen App-Store-Screenshots von Duolingo, Babbel und Busuu (keine Inhalte übernommen, nur Gestaltungsmuster als Inspiration):
+- `LearnListView` von einer schlichten `List` auf denselben Karten-Aufbau umgestellt, den `TodayView` bereits nutzt: eine "Kapitelkarte" pro Demo-Lernstrecke mit farbig hinterlegtem Icon (Wink-Hand für „Vorstellen", Kaffeetasse für „Café"), schlankem Fortschrittsbalken (`PathProgressBar`, neu) und einem Status-Chip ("Starten"/"Fortsetzen"/"Abgeschlossen"/"Noch nicht begonnen"). Die jeweils empfohlene nächste Lernstrecke wird zusätzlich per Rahmen hervorgehoben.
+- Dafür neue, testgetriebene Logik `PilotPathProgressTracker.nextIncompletePath(paths:progress:)` ergänzt (RED zuerst verifiziert, dann implementiert) — ersetzt die bisher nur inline in `TodayView` vorhandene "welche Lernstrecke ist als Nächstes dran"-Logik durch eine wiederverwendbare, unit-getestete Funktion.
+- `CardView` bekommt einen dezenten Schatten (mehr visuelle Tiefe); `TodayView`s Begrüßungskarte zeigt das Maskottchen jetzt größer mit weichem Farbkreis dahinter, und "Weiterlernen" ist als farbiger Chip statt als reiner Fließtext-Titel gesetzt.
+- Verifiziert: TDD für die neue Tracker-Funktion (3 neue Unit-Tests, RED vor GREEN bestätigt), `xcodebuild build` + `xcodebuild test` sauber (30 Unit- + 5 UI-Tests grün), beide Demo-Lernstrecken einmal komplett durchgespielt inklusive Übergang von "Starten" zu "Abgeschlossen"/hervorgehobener nächster Karte, Light- und Dark-Mode per Simulator-Screenshot geprüft.
+
+**Bewusst nicht umgesetzt**: Die farbliche Abwechslung zwischen den beiden Kapitelkarten (Primärblau/Akzentorange) ist rein dekorativ pro Listenposition, nicht semantisch — bei mehr als zwei Lernstrecken müsste dieses Schema überdacht werden, ist aber für den aktuellen Zwei-Pfade-Pilot ausreichend.
+
 ## Nächste Phase
 
 P1-Abnahmepunkt ist hiermit erreicht und dokumentiert; es wird **kein** Go/No-Go für den Kern oder den lokalen Tutor behauptet — das ist laut PILOT.md „Entscheidung nach Pilot" an die oben offenen physischen/redaktionellen Prüfungen gebunden. Empfohlener nächster Schritt gemäß IMPLEMENTATION_PLAN.md: P2 „Lernkern" (Produktionsschema/-validator, SwiftData-Migrationen für echte Kursdaten, LessonEngine, gepinnter FSRS-Adapter, echte Übungstypen E01–E12) — erst nach dieser P1-Dokumentation und nach Rücksprache, welche der oben offenen physischen Prüfungen zuerst nachgeholt werden.

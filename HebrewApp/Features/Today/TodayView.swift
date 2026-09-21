@@ -60,10 +60,21 @@ struct TodayView: View {
         CardView {
             VStack(alignment: .leading, spacing: Spacing.sm) {
                 HStack(alignment: .top, spacing: Spacing.sm) {
-                    SectionHeader(title: "Weiterlernen")
+                    Text("Weiterlernen")
+                        .font(AppFont.germanCaption().weight(.bold))
+                        .foregroundStyle(ColorTokens.primary)
+                        .padding(.horizontal, Spacing.sm)
+                        .padding(.vertical, Spacing.xxs)
+                        .background(ColorTokens.primary.opacity(0.1))
+                        .clipShape(Capsule())
                     Spacer(minLength: Spacing.sm)
-                    HoopoeMascotView(expression: nextPath == nil ? .happy : .waving)
-                        .frame(width: 56, height: 56)
+                    ZStack {
+                        Circle()
+                            .fill(ColorTokens.primary.opacity(0.08))
+                        HoopoeMascotView(expression: nextPath == nil ? .happy : .waving)
+                            .frame(width: 86, height: 86)
+                    }
+                    .frame(width: 108, height: 108)
                 }
                 if let nextPath {
                     Text(nextPath.objective)
@@ -93,11 +104,21 @@ struct TodayView: View {
 
     private var reviewCard: some View {
         CardView {
-            VStack(alignment: .leading, spacing: Spacing.xxs) {
-                SectionHeader(title: "Wiederholung")
-                Text("Die verteilte Wiederholung ist Teil des Lernkerns (P2) und noch nicht Teil dieses Technik-Pilots.")
-                    .font(AppFont.germanCaption())
-                    .foregroundStyle(ColorTokens.textSecondary)
+            HStack(alignment: .top, spacing: Spacing.sm) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: Spacing.xs, style: .continuous)
+                        .fill(ColorTokens.accent.opacity(0.14))
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                        .foregroundStyle(ColorTokens.accent)
+                }
+                .frame(width: 38, height: 38)
+
+                VStack(alignment: .leading, spacing: Spacing.xxs) {
+                    SectionHeader(title: "Wiederholung")
+                    Text("Die verteilte Wiederholung ist Teil des Lernkerns (P2) und noch nicht Teil dieses Technik-Pilots.")
+                        .font(AppFont.germanCaption())
+                        .foregroundStyle(ColorTokens.textSecondary)
+                }
             }
         }
     }

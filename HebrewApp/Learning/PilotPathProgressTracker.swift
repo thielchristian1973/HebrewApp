@@ -38,6 +38,16 @@ enum PilotPathProgressTracker {
         }.count
     }
 
+    /// The first of `paths` (in catalog order) that isn't fully completed yet, or `nil` once
+    /// every path is done. A path with no matching entry in `progress` counts as not started.
+    static func nextIncompletePath(paths: [PilotLearningPath], progress: [PilotLearningPathProgress]) -> PilotLearningPath? {
+        let progressByID = Dictionary(uniqueKeysWithValues: progress.map { ($0.pathID, $0) })
+        return paths.first { path in
+            guard let pathProgress = progressByID[path.id] else { return true }
+            return !isComplete(path: path, progress: pathProgress)
+        }
+    }
+
     /// One dot state per step, for a step-progress indicator: completed steps first, then a
     /// single `.current` marker at the next incomplete step, then `.upcoming` for the rest. Once
     /// every step is completed, every dot reports `.completed` (there is no "current" step left).
