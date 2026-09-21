@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0-draft",
+  "status": "draft",
+  "counts": {
+    "lexemes": 50,
+    "sentences": 20,
+    "dialogues": 4
+  },
+  "files": [
+    {
+      "path": "lexemes.json",
+      "sha256": "635dc95364187e5697bb7a374fe33f933dc084510c82656c8ab1c1dbc2cd8465"
+    },
+    {
+      "path": "sentences.json",
+      "sha256": "ca9423410070ea9741ee53d93e27a0bc10b747150dd83fabe726a934f62c6ff7"
+    },
+    {
+      "path": "dialogues.json",
+      "sha256": "94cf3fc9a69f51d4396c3815c3a8fb699f9e81af8cf40b89444a04ee1286d65b"
+    }
+  ]
+}

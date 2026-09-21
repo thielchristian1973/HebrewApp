@@ -1,0 +1,165 @@
+[
+  {
+    "id": "dialog_greeting",
+    "title": "Begrüßen",
+    "objective": "Begrüßen und den eigenen Namen nennen; Dani ist die Übungsrolle.",
+    "startNodeID": "g1",
+    "nodes": [
+      {
+        "id": "g1",
+        "promptSentenceID": "sent_001",
+        "answers": [
+          {
+            "sentenceID": "sent_002",
+            "nextNodeID": "g2"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "g2",
+        "promptSentenceID": "sent_003",
+        "answers": [
+          {
+            "sentenceID": "sent_003",
+            "nextNodeID": "g3"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "g3",
+        "promptSentenceID": "sent_001",
+        "answers": [],
+        "terminal": true
+      }
+    ],
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "dialog_cafe",
+    "title": "Im Café",
+    "objective": "Kaffee bestellen und auf eine Rückfrage antworten.",
+    "startNodeID": "c1",
+    "nodes": [
+      {
+        "id": "c1",
+        "promptSentenceID": "sent_001",
+        "answers": [
+          {
+            "sentenceID": "sent_007",
+            "nextNodeID": "c2"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "c2",
+        "promptSentenceID": "sent_009",
+        "answers": [
+          {
+            "sentenceID": "sent_011",
+            "nextNodeID": "c3"
+          },
+          {
+            "sentenceID": "sent_012",
+            "nextNodeID": "c3"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "c3",
+        "promptSentenceID": "sent_020",
+        "answers": [],
+        "terminal": true
+      }
+    ],
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "dialog_directions",
+    "title": "Nach dem Weg fragen",
+    "objective": "Nach der Haltestelle fragen und sich bedanken.",
+    "startNodeID": "w1",
+    "nodes": [
+      {
+        "id": "w1",
+        "promptSentenceID": "sent_001",
+        "answers": [
+          {
+            "sentenceID": "sent_013",
+            "nextNodeID": "w2"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "w2",
+        "promptSentenceID": "sent_014",
+        "answers": [
+          {
+            "sentenceID": "sent_016",
+            "nextNodeID": "w3"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "w3",
+        "promptSentenceID": "sent_001",
+        "answers": [],
+        "terminal": true
+      }
+    ],
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "dialog_shopping",
+    "title": "Einkaufen",
+    "objective": "Preis und Kartenzahlung erfragen.",
+    "startNodeID": "s1",
+    "nodes": [
+      {
+        "id": "s1",
+        "promptSentenceID": "sent_001",
+        "answers": [
+          {
+            "sentenceID": "sent_017",
+            "nextNodeID": "s2"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "s2",
+        "promptSentenceID": "sent_018",
+        "answers": [
+          {
+            "sentenceID": "sent_019",
+            "nextNodeID": "s3"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "s3",
+        "promptSentenceID": "sent_020",
+        "answers": [
+          {
+            "sentenceID": "sent_016",
+            "nextNodeID": "s4"
+          }
+        ],
+        "terminal": false
+      },
+      {
+        "id": "s4",
+        "promptSentenceID": "sent_001",
+        "answers": [],
+        "terminal": true
+      }
+    ],
+    "reviewStatus": "draft"
+  }
+]

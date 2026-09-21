@@ -1,0 +1,142 @@
+[
+  {
+    "id": "sent_001",
+    "hebrew": "שלום!",
+    "german": "Hallo!",
+    "ttsText": "שלום!",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_002",
+    "hebrew": "קוראים לי דני.",
+    "german": "Ich heiße Dani.",
+    "ttsText": "קוראים לי דני.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_003",
+    "hebrew": "נעים מאוד.",
+    "german": "Freut mich.",
+    "ttsText": "נעים מאוד.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_004",
+    "hebrew": "אני מגרמניה.",
+    "german": "Ich komme aus Deutschland.",
+    "ttsText": "אני מגרמניה.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_005",
+    "hebrew": "אני לומד עברית.",
+    "german": "Ich lerne Hebräisch. (Sprecher männlich)",
+    "ttsText": "אני לומד עברית.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_006",
+    "hebrew": "אני לומדת עברית.",
+    "german": "Ich lerne Hebräisch. (Sprecherin weiblich)",
+    "ttsText": "אני לומדת עברית.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_007",
+    "hebrew": "אפשר קפה, בבקשה?",
+    "german": "Kann ich bitte einen Kaffee haben?",
+    "ttsText": "אפשר קפה, בבקשה?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_008",
+    "hebrew": "אפשר מים, בבקשה?",
+    "german": "Kann ich bitte Wasser haben?",
+    "ttsText": "אפשר מים, בבקשה?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_009",
+    "hebrew": "עם חלב?",
+    "german": "Mit Milch?",
+    "ttsText": "עם חלב?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_010",
+    "hebrew": "בלי סוכר, בבקשה.",
+    "german": "Ohne Zucker, bitte.",
+    "ttsText": "בלי סוכר, בבקשה.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_011",
+    "hebrew": "כן, תודה.",
+    "german": "Ja, danke.",
+    "ttsText": "כן, תודה.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_012",
+    "hebrew": "לא, תודה.",
+    "german": "Nein, danke.",
+    "ttsText": "לא, תודה.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_013",
+    "hebrew": "סליחה, איפה התחנה?",
+    "german": "Entschuldigung, wo ist die Haltestelle?",
+    "ttsText": "סליחה, איפה התחנה?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_014",
+    "hebrew": "התחנה שם.",
+    "german": "Die Haltestelle ist dort.",
+    "ttsText": "התחנה שם.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_015",
+    "hebrew": "ישר ואז ימינה.",
+    "german": "Geradeaus und dann rechts.",
+    "ttsText": "ישר ואז ימינה.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_016",
+    "hebrew": "תודה רבה!",
+    "german": "Vielen Dank!",
+    "ttsText": "תודה רבה!",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_017",
+    "hebrew": "כמה זה עולה?",
+    "german": "Wie viel kostet das?",
+    "ttsText": "כמה זה עולה?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_018",
+    "hebrew": "זה עולה עשרה שקלים.",
+    "german": "Das kostet zehn Schekel.",
+    "ttsText": "זה עולה עשרה שקלים.",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_019",
+    "hebrew": "אפשר לשלם בכרטיס?",
+    "german": "Kann man mit Karte bezahlen?",
+    "ttsText": "אפשר לשלם בכרטיס?",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "sent_020",
+    "hebrew": "כן, אפשר.",
+    "german": "Ja, das geht.",
+    "ttsText": "כן, אפשר.",
+    "reviewStatus": "draft"
+  }
+]

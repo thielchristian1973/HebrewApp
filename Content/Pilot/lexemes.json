@@ -1,0 +1,352 @@
+[
+  {
+    "id": "lex_001",
+    "hebrew": "שלום",
+    "german": "Hallo / Frieden",
+    "ttsText": "שלום",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_002",
+    "hebrew": "תודה",
+    "german": "Danke",
+    "ttsText": "תודה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_003",
+    "hebrew": "בבקשה",
+    "german": "Bitte",
+    "ttsText": "בבקשה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_004",
+    "hebrew": "כן",
+    "german": "Ja",
+    "ttsText": "כן",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_005",
+    "hebrew": "לא",
+    "german": "Nein",
+    "ttsText": "לא",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_006",
+    "hebrew": "סליחה",
+    "german": "Entschuldigung",
+    "ttsText": "סליחה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_007",
+    "hebrew": "אני",
+    "german": "ich",
+    "ttsText": "אני",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_008",
+    "hebrew": "אתה",
+    "german": "du (männlich)",
+    "ttsText": "אתה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_009",
+    "hebrew": "את",
+    "german": "du (weiblich)",
+    "ttsText": "את",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_010",
+    "hebrew": "הוא",
+    "german": "er",
+    "ttsText": "הוא",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_011",
+    "hebrew": "היא",
+    "german": "sie",
+    "ttsText": "היא",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_012",
+    "hebrew": "אנחנו",
+    "german": "wir",
+    "ttsText": "אנחנו",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_013",
+    "hebrew": "מה",
+    "german": "was",
+    "ttsText": "מה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_014",
+    "hebrew": "מי",
+    "german": "wer",
+    "ttsText": "מי",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_015",
+    "hebrew": "איפה",
+    "german": "wo",
+    "ttsText": "איפה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_016",
+    "hebrew": "איך",
+    "german": "wie",
+    "ttsText": "איך",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_017",
+    "hebrew": "כמה",
+    "german": "wie viel / wie viele",
+    "ttsText": "כמה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_018",
+    "hebrew": "פה",
+    "german": "hier",
+    "ttsText": "פה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_019",
+    "hebrew": "שם",
+    "german": "dort",
+    "ttsText": "שם",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_020",
+    "hebrew": "היום",
+    "german": "heute",
+    "ttsText": "היום",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_021",
+    "hebrew": "מחר",
+    "german": "morgen",
+    "ttsText": "מחר",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_022",
+    "hebrew": "בוקר",
+    "german": "Morgen (Tageszeit)",
+    "ttsText": "בוקר",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_023",
+    "hebrew": "ערב",
+    "german": "Abend",
+    "ttsText": "ערב",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_024",
+    "hebrew": "מים",
+    "german": "Wasser",
+    "ttsText": "מים",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_025",
+    "hebrew": "קפה",
+    "german": "Kaffee",
+    "ttsText": "קפה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_026",
+    "hebrew": "תה",
+    "german": "Tee",
+    "ttsText": "תה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_027",
+    "hebrew": "לחם",
+    "german": "Brot",
+    "ttsText": "לחם",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_028",
+    "hebrew": "חלב",
+    "german": "Milch",
+    "ttsText": "חלב",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_029",
+    "hebrew": "סוכר",
+    "german": "Zucker",
+    "ttsText": "סוכר",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_030",
+    "hebrew": "אוכל",
+    "german": "Essen (Substantiv)",
+    "ttsText": "אוכל",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_031",
+    "hebrew": "מסעדה",
+    "german": "Restaurant",
+    "ttsText": "מסעדה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_032",
+    "hebrew": "מלון",
+    "german": "Hotel",
+    "ttsText": "מלון",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_033",
+    "hebrew": "בית",
+    "german": "Haus / Zuhause",
+    "ttsText": "בית",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_034",
+    "hebrew": "רחוב",
+    "german": "Straße",
+    "ttsText": "רחוב",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_035",
+    "hebrew": "תחנה",
+    "german": "Haltestelle / Station",
+    "ttsText": "תחנה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_036",
+    "hebrew": "אוטובוס",
+    "german": "Bus",
+    "ttsText": "אוטובוס",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_037",
+    "hebrew": "רכבת",
+    "german": "Zug",
+    "ttsText": "רכבת",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_038",
+    "hebrew": "מונית",
+    "german": "Taxi",
+    "ttsText": "מונית",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_039",
+    "hebrew": "חנות",
+    "german": "Geschäft / Laden",
+    "ttsText": "חנות",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_040",
+    "hebrew": "כסף",
+    "german": "Geld",
+    "ttsText": "כסף",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_041",
+    "hebrew": "זמן",
+    "german": "Zeit",
+    "ttsText": "זמן",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_042",
+    "hebrew": "ספר",
+    "german": "Buch",
+    "ttsText": "ספר",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_043",
+    "hebrew": "שפה",
+    "german": "Sprache",
+    "ttsText": "שפה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_044",
+    "hebrew": "עברית",
+    "german": "Hebräisch",
+    "ttsText": "עברית",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_045",
+    "hebrew": "גרמנית",
+    "german": "Deutsch",
+    "ttsText": "גרמנית",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_046",
+    "hebrew": "ישראל",
+    "german": "Israel",
+    "ttsText": "ישראל",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_047",
+    "hebrew": "גרמניה",
+    "german": "Deutschland",
+    "ttsText": "גרמניה",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_048",
+    "hebrew": "ימין",
+    "german": "rechts / rechte Seite",
+    "ttsText": "ימין",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_049",
+    "hebrew": "שמאל",
+    "german": "links / linke Seite",
+    "ttsText": "שמאל",
+    "reviewStatus": "draft"
+  },
+  {
+    "id": "lex_050",
+    "hebrew": "ישר",
+    "german": "geradeaus",
+    "ttsText": "ישר",
+    "reviewStatus": "draft"
+  }
+]
