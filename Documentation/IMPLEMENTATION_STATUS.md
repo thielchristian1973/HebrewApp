@@ -55,7 +55,7 @@ xcodebuild -project HebrewApp.xcodeproj -scheme HebrewApp \
   -destination 'platform=iOS Simulator,id=FE627F38-C127-4D2A-9B44-BE7EC2F72DBF' \
   -configuration Debug build
 ```
-Ergebnis: `** BUILD SUCCEEDED **`, Exitcode 0. Keine kritischen Warnungen im finalen Durchlauf (mehrere Zwischen-Iterationen mit echten Compilerfehlern wurden behoben, siehe „Iterativer Verlauf" unten — hier wird nicht „kompiliert" aus reiner Syntaxprüfung behauptet, sondern aus einem tatsächlichen `xcodebuild build`-Exitcode 0).
+Ergebnis: `** BUILD SUCCEEDED **`, Exitcode 0. Verbleibende Warnung im finalen Durchlauf: eine einzelne, erwartete Build-System-Meldung („Metadata extraction skipped. No AppIntents.framework dependency found." — die App verwendet bewusst kein App Intents), keine Swift-Compiler-Warnungen. (Mehrere Zwischen-Iterationen mit echten Compilerfehlern wurden behoben, siehe „Iterativer Verlauf" unten — hier wird nicht „kompiliert" aus reiner Syntaxprüfung behauptet, sondern aus einem tatsächlichen `xcodebuild build`-Exitcode 0.)
 
 Zusätzlich erfolgreich gebaut für:
 - iPad Pro 13" (M5), iOS 26.5 (Simulator-UUID `CD7F731B-EBE2-48E0-84CA-0B8A3A04F068`)

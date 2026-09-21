@@ -1,4 +1,10 @@
 # Qualitätsstatus des Übergabepakets
+
+> Historischer Stand vor der Implementierung (Dokumentationspaket, kein Code). Seit dem
+> 21.09.2026 existiert ein gebauter und automatisiert getesteter Technik-Pilot (P0/P1); der
+> aktuelle Stand inklusive Buildnachweisen und weiterhin offenen physischen Prüfungen steht in
+> Documentation/IMPLEMENTATION_STATUS.md. Die folgenden Punkte beschreiben absichtlich nur die
+> Paketstruktur, nicht den App-Code.
 ## Tatsächlich geprüft
 - JSON lesbar und UTF-8.
 - Pilotumfang: 50 Lexeme, 20 Sätze, vier Dialoge.
